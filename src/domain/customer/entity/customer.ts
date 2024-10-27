@@ -1,6 +1,6 @@
 import { AgreggateRoot } from "../../@shared/domain/aggregate-root";
 import Address from "../value-object/address";
-import { CustomerCreated } from "./customer-created.event";
+import { CustomerCreatedEvent } from "../event/customer-created.event";
 
 export default class Customer extends AgreggateRoot {
   private _id: string;
@@ -18,7 +18,7 @@ export default class Customer extends AgreggateRoot {
 
   static create(id: string, name: string): Customer {
     const customer = new Customer(id, name);
-    customer.addEvent(new CustomerCreated(id, name))
+    customer.addEvent(new CustomerCreatedEvent(id, name))
 
     return customer
   }
